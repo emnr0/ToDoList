@@ -1,0 +1,968 @@
+:root[data-theme="frog"] {
+  --light-color: #d8e7d8;
+  --medium-color: #b6d7b9;
+  --accent-color: #a4c5a7;
+  --dark-color: #7d9b76;
+  --darker-color: #5c715e;
+  --theme-emoji: "🐸";
+  --theme-icon: "\F1F0";
+  --secondary-icon: "\F1379";
+  --theme-name: "Froggy";
+}
+
+:root[data-theme="bunny"] {
+  --light-color: #ffe5ec;
+  --medium-color: #ffc2d1;
+  --accent-color: #ffb3c6;
+  --dark-color: #ff8fab;
+  --darker-color: #fb6f92;
+  --theme-emoji: "🐰";
+  --theme-icon: "\F1F8";
+  --secondary-icon: "\F0E6";
+  --theme-name: "Bunny";
+}
+
+:root[data-theme="cat"] {
+  --light-color: #e7e0ff;
+  --medium-color: #d4c4fb;
+  --accent-color: #c4b0ff;
+  --dark-color: #b39ddb;
+  --darker-color: #9575cd;
+  --theme-emoji: "🐱";
+  --theme-icon: "\F0E7";
+  --secondary-icon: "\F0EC5";
+  --theme-name: "Kitty";
+}
+
+:root[data-theme="swan"] {
+  --light-color: #e3f2fd;
+  --medium-color: #bbdefb;
+  --accent-color: #90caf9;
+  --dark-color: #64b5f6;
+  --darker-color: #42a5f5;
+  --theme-emoji: "🦢";
+  --theme-icon: "\F0574";
+  --secondary-icon: "\F1ACA";
+  --theme-name: "Swan";
+}
+
+/* Typography */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600&family=Raleway:wght@400;500&display=swap");
+
+body {
+  font-family: "Raleway", sans-serif;
+  line-height: 1.6;
+  background-color: var(--light-color);
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.theme-selector {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.main-content {
+  display: flex;
+  gap: 20px;
+  margin-top: 0;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 250px;
+}
+
+.features-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feature-btn {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  color: var(--darker-color);
+  transition: all 0.3s ease;
+}
+
+.feature-btn:hover {
+  background-color: var(--medium-color);
+  color: white;
+  transform: translateX(5px);
+}
+
+/* Content Area */
+.content-area {
+  flex: 1;
+  background: var(--background);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.add-task-form {
+  background-color: var(--light-color);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.input-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-row:last-child {
+  margin-bottom: 0;
+}
+
+.input-row input[type="text"] {
+  flex: 1;
+}
+
+/* Form Elements */
+input,
+select {
+  padding: 12px 16px;
+  border: 2px solid var(--medium-color);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--darker-color);
+  font-family: "Quicksand", sans-serif;
+}
+
+select {
+  min-width: 150px;
+  cursor: pointer;
+}
+
+#addButton {
+  background-color: var(--dark-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+}
+
+/* Task List */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    order: 2;
+  }
+
+  .content-area {
+    order: 1;
+  }
+}
+
+/* Stats Panel */
+.stats-panel {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: var(--card-shadow);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.stat-item span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.stat-item label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Task Items */
+.task-item {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--medium-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Add these new styles */
+.theme-illustration {
+  display: none;
+}
+
+/* Theme-specific illustrations */
+[data-theme="frog"] .theme-illustration {
+  background: url("path/to/frog-pattern.svg") no-repeat center;
+}
+
+[data-theme="bunny"] .theme-illustration {
+  background: url("path/to/bunny-pattern.svg") no-repeat center;
+}
+
+/* Enhanced UI Elements */
+.filter-dropdown {
+  position: relative;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  display: none;
+}
+
+.filter-dropdown.active {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+.filter-group {
+  margin-bottom: 15px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--darker-color);
+  font-weight: 500;
+}
+
+/* Enhanced Stats Panel */
+.stats-panel {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: var(--card-shadow);
+}
+
+.yearly-summary {
+  margin-top: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.progress-circle {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  position: relative;
+  /* Add circular progress styling */
+}
+
+/* Theme Illustrations */
+.theme-patterns {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.05;
+}
+
+[data-theme="frog"] .theme-patterns {
+  background: radial-gradient(
+      circle at 10% 20%,
+      var(--light-color) 2px,
+      transparent 2px
+    ),
+    radial-gradient(circle at 90% 80%, var(--medium-color) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, var(--accent-color) 3px, transparent 3px);
+  background-size: 100px 100px;
+}
+
+[data-theme="bunny"] .theme-patterns {
+  background: radial-gradient(
+      circle at 50% 50%,
+      var(--light-color) 5px,
+      transparent 5px
+    ),
+    radial-gradient(circle at 20% 80%, var(--medium-color) 3px, transparent 3px);
+  background-size: 60px 60px;
+}
+
+/* Enhanced Stats Visualization */
+.stats-visualization {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.yearly-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--light-color);
+  border-radius: 12px;
+}
+
+.progress-circle {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+/* Animation Classes */
+.animate-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-container {
+  position: relative;
+  width: 100%;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--accent-color);
+  border-radius: 0 0 12px 12px;
+  padding: 1rem;
+  display: none;
+  z-index: 9999;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.filter-dropdown.show {
+  display: block;
+  animation: expandDown 0.2s ease-out;
+}
+
+@keyframes expandDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+.filter-section {
+  margin-bottom: 1rem;
+}
+
+.filter-section h4 {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.filter-section select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.9rem;
+}
+
+.filter-section select option {
+  background: var(--accent-color);
+  color: white;
+}
+
+.clear-filter-btn {
+  width: 100%;
+  padding: 0.5rem;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.clear-filter-btn:hover {
+  opacity: 0.9;
+}
+
+/* Active filter indication */
+.feature-btn.active-filter {
+  background: var(--accent-color);
+  color: white;
+}
+
+/* Arrow styling */
+.filter-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--card-bg);
+}
+
+.sort-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--accent-color);
+  border-radius: 0 0 12px 12px;
+  padding: 1rem;
+  display: none;
+  z-index: 9999;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.sort-dropdown.show {
+  display: block;
+  animation: expandDown 0.2s ease-out;
+}
+
+.sort-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sort-option {
+  width: 100%;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: "Poppins", sans-serif;
+  transition: background 0.2s;
+  text-align: left;
+}
+
+.sort-option i {
+  margin-right: 0.5rem;
+  width: 16px;
+}
+
+.sort-option:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.sort-option.active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Modify the feature button when sort dropdown is shown */
+.feature-btn#sortBtn.active {
+  border-radius: 8px 8px 0 0;
+  background: var(--accent-color);
+  color: white;
+}
+
+/* Common styles for feature buttons and their dropdowns */
+.feature-btn {
+  position: relative;
+  width: 100%;
+}
+
+/* Filter dropdown styles */
+.filter-container {
+  position: relative;
+  width: 100%;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--accent-color);
+  border-radius: 0 0 12px 12px;
+  padding: 1rem;
+  display: none;
+  z-index: 9999;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Sort dropdown styles */
+.sort-container {
+  position: relative;
+  width: 100%;
+}
+
+.sort-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--accent-color);
+  border-radius: 0 0 12px 12px;
+  padding: 1rem;
+  display: none;
+  z-index: 9999;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Active states for buttons when dropdowns are shown */
+.feature-btn#filterBtn.active,
+.feature-btn#sortBtn.active {
+  border-radius: 8px 8px 0 0;
+  background: var(--accent-color);
+  color: white;
+}
+
+/* Animation for both dropdowns */
+.filter-dropdown.show,
+.sort-dropdown.show {
+  display: block;
+  animation: expandDown 0.2s ease-out;
+}
+
+@keyframes expandDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+.filter-container,
+.sort-container {
+  position: relative;
+  width: 100%;
+}
+
+.filter-dropdown,
+.sort-dropdown {
+  position: absolute;
+  display: none;
+  z-index: 9999;
+  margin-top: 0;
+  border-top: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.feature-btn {
+  width: 100%;
+  position: relative;
+  z-index: 9998;
+}
+
+.filter-dropdown.show,
+.sort-dropdown.show {
+  display: block;
+}
+
+/* Optional: If you have any other elements that might need z-index adjustment */
+.container,
+.header,
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.delete-btn {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  padding: 0;
+  border: none;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #666;
+  line-height: 1;
+}
+
+.delete-btn:hover {
+  background: #ff9494;
+  color: white;
+}
+
+#taskTime {
+  padding: 8px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: inherit;
+}
+
+#taskTime:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+/* Task tags and metadata */
+.task-metadata {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  background: var(--accent);
+  color: var(--text);
+}
+
+.priority-tag.high {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.priority-tag.medium {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.priority-tag.low {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.time-tag,
+.date-tag {
+  background: var(--secondary);
+}
+
+.category-tag {
+  background: var(--primary);
+}
+
+/* Edit form styling */
+.edit-form {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px;
+  background: var(--background);
+  border-radius: 8px;
+}
+
+.edit-form input,
+.edit-form select {
+  padding: 6px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  background: var(--background);
+  color: var(--text);
+  font-family: inherit;
+}
+
+.edit-form button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.edit-form button:hover {
+  opacity: 0.9;
+}
+
+.edit-form .save-edit {
+  background: var(--accent);
+}
+
+.edit-form .cancel-edit {
+  background: #ffebee;
+}
+
+/* Task actions */
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 0.9;
+}
+
+/* Time select in main form */
+#taskTime {
+  padding: 8px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  background: var(--background);
+  color: var(--text);
+  font-family: inherit;
+}
+
+#taskTime:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Unified styling for all inputs */
+.input-row input,
+.input-row select,
+#taskInput,
+#taskTime,
+#dueDate,
+#priority,
+#category {
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: var(--secondary);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* Hover states for all inputs */
+.input-row input:hover,
+.input-row select:hover,
+#taskInput:hover,
+#taskTime:hover,
+#dueDate:hover,
+#priority:hover,
+#category:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus states for all inputs */
+.input-row input:focus,
+.input-row select:focus,
+#taskInput:focus,
+#taskTime:focus,
+#dueDate:focus,
+#priority:focus,
+#category:focus {
+  outline: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Layout */
+.input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+/* First row task input */
+#taskInput {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Second row equal widths */
+.input-row:nth-child(2) > * {
+  flex: 1;
+}
+
+/* Styling for all inputs including time */
+.input-row input,
+.input-row select,
+#taskTime {
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: white;
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific styling for taskInput */
+#taskInput {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 15px;
+  background-color: white;
+}
+
+/* Hover states for all inputs */
+.input-row input:hover,
+.input-row select:hover,
+#taskTime:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus states for all inputs */
+.input-row input:focus,
+.input-row select:focus,
+#taskTime:focus {
+  outline: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Input row layout */
+.input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+/* Second row inputs equal width */
+.input-row:nth-child(2) > * {
+  flex: 1;
+}
+
+/* Common styling for all inputs and selects */
+#taskInput,
+#taskTime,
+#priority,
+#category,
+#themeSelect,
+.input-row input,
+.input-row select {
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: white !important;
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Custom dropdown arrow for all select elements */
+select,
+#themeSelect,
+#taskTime {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 30px !important;
+}
+
+/* Remove default arrow in IE */
+select::-ms-expand,
+#themeSelect::-ms-expand {
+  display: none;
+}
+
+.category-tag {
+  color: rgb(0, 0, 0) !important;
+  font-weight: 500;
+  text-transform: capitalize;
+}

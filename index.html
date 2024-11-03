@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="frog">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link id="dynamic-favicon" rel="icon" type="image/x-icon" href="" />
+    <link id="dynamic-favicon-apple" rel="apple-touch-icon" href="" />
+    <link href="https://unpkg.com/css.gg/icons/all.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="theme-selector">
+          <select id="themeSelect" onchange="changeTheme()">
+            <option value="frog">🐸 Froggy Theme</option>
+            <option value="bunny">🐰 Bunny Theme</option>
+            <option value="cat">🐱 Cat Theme</option>
+            <option value="swan">🦢 Swan Theme</option>
+          </select>
+        </div>
+        <h1 id="themeTitle">
+          <i class="mdi mdi-frog"></i>
+          <span>To-Do List</span>
+          <i class="mdi mdi-leaf"></i>
+        </h1>
+      </div>
+
+      <div class="main-content">
+        <div class="sidebar">
+          <div class="features-menu">
+            <div class="filter-container">
+              <button class="feature-btn" id="filterBtn">
+                <i class="fas fa-filter"></i> Filter Tasks
+              </button>
+              <div class="filter-dropdown" id="filterDropdown">
+                <div class="filter-section">
+                  <h4>Filter by Category</h4>
+                  <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="health">Health</option>
+                  </select>
+                </div>
+                <button class="clear-filter-btn" id="clearFiltersBtn">
+                  Clear Filters
+                </button>
+              </div>
+            </div>
+            <div class="sort-container">
+              <button class="feature-btn" id="sortBtn">
+                <i class="fas fa-sort"></i> Sort Tasks
+              </button>
+              <div class="sort-dropdown" id="sortDropdown">
+                <div class="sort-section">
+                  <button class="sort-option" id="sortByTime">
+                    <i class="far fa-clock"></i> Sort by Time
+                  </button>
+                  <button class="sort-option" id="sortByPriority">
+                    <i class="fas fa-exclamation"></i> Sort by Priority
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="stats-panel" id="statsPanel">
+            <h3>Statistics</h3>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span id="totalTasks">0</span>
+                <label>Total</label>
+              </div>
+              <div class="stat-item">
+                <span id="completedTasks">0</span>
+                <label>Done</label>
+              </div>
+              <div class="stat-item">
+                <span id="pendingTasks">0</span>
+                <label>Pending</label>
+              </div>
+              <div class="stat-item">
+                <span id="urgentTasks">0</span>
+                <label>Urgent</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-area">
+          <div class="add-task-form">
+            <div class="input-row">
+              <input
+                type="text"
+                id="taskInput"
+                placeholder="Add a new task..."
+              />
+              <button id="addButton">Add Task</button>
+            </div>
+            <div class="input-row">
+              <select id="taskTime">
+                <option value="">Select Time</option>
+                <option value="00:00">12:00 AM</option>
+                <option value="01:00">1:00 AM</option>
+                <option value="02:00">2:00 AM</option>
+                <option value="03:00">3:00 AM</option>
+                <option value="04:00">4:00 AM</option>
+                <option value="05:00">5:00 AM</option>
+                <option value="06:00">6:00 AM</option>
+                <option value="07:00">7:00 AM</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
+                <option value="22:00">10:00 PM</option>
+                <option value="23:00">11:00 PM</option>
+              </select>
+              <select id="priority">
+                <option value="">Select Priority</option>
+                <option value="low">Low Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="high">High Priority</option>
+              </select>
+              <select id="category">
+                <option value="">Select Category</option>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="shopping">Shopping</option>
+                <option value="health">Health</option>
+              </select>
+            </div>
+          </div>
+          <div id="taskList" class="task-list"></div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
